@@ -1,3 +1,5 @@
 
 .env
 node_modules/
+*.log
+hs_err_*.log
