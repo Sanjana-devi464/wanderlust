@@ -1,0 +1,230 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-12 text-center mb-5">
+            <h1 class="display-4 mb-4">Safety Information</h1>
+            <p class="lead">Your safety and security are our top priorities</p>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-shield-alt fa-3x text-primary"></i>
+                    </div>
+                    <h5 class="card-title">Verified Hosts</h5>
+                    <p class="card-text">All hosts go through identity verification to ensure safe and authentic experiences.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-lock fa-3x text-success"></i>
+                    </div>
+                    <h5 class="card-title">Secure Payments</h5>
+                    <p class="card-text">Your payment information is encrypted and processed through secure channels.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="fas fa-headset fa-3x text-warning"></i>
+                    </div>
+                    <h5 class="card-title">24/7 Support</h5>
+                    <p class="card-text">Our customer support team is available around the clock to assist you.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2>Safety Guidelines for Guests</h2>
+            
+            <div class="accordion mt-4" id="guestSafetyAccordion">
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#guestCollapse1">
+                            Before You Book
+                        </button>
+                    </h3>
+                    <div id="guestCollapse1" class="accordion-collapse collapse show" data-bs-parent="#guestSafetyAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Read reviews from previous guests</li>
+                                <li>Check the host's verification status</li>
+                                <li>Review the listing photos and description carefully</li>
+                                <li>Ask questions about the property and neighborhood</li>
+                                <li>Verify the exact address and location</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#guestCollapse2">
+                            During Your Stay
+                        </button>
+                    </h3>
+                    <div id="guestCollapse2" class="accordion-collapse collapse" data-bs-parent="#guestSafetyAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Follow house rules and local laws</li>
+                                <li>Keep your personal belongings secure</li>
+                                <li>Be aware of emergency exits and procedures</li>
+                                <li>Report any safety concerns immediately</li>
+                                <li>Maintain communication through our platform</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#guestCollapse3">
+                            Emergency Situations
+                        </button>
+                    </h3>
+                    <div id="guestCollapse3" class="accordion-collapse collapse" data-bs-parent="#guestSafetyAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Contact local emergency services (911, 112, etc.)</li>
+                                <li>Notify your host if safe to do so</li>
+                                <li>Contact WanderLust support immediately</li>
+                                <li>Keep important documents accessible</li>
+                                <li>Know the location of nearest hospital</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <h2>Safety Guidelines for Hosts</h2>
+            
+            <div class="accordion mt-4" id="hostSafetyAccordion">
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#hostCollapse1">
+                            Property Safety
+                        </button>
+                    </h3>
+                    <div id="hostCollapse1" class="accordion-collapse collapse show" data-bs-parent="#hostSafetyAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Install smoke and carbon monoxide detectors</li>
+                                <li>Provide fire extinguishers and first aid kits</li>
+                                <li>Ensure all electrical systems are up to code</li>
+                                <li>Secure potentially dangerous items</li>
+                                <li>Provide clear emergency contact information</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hostCollapse2">
+                            Guest Screening
+                        </button>
+                    </h3>
+                    <div id="hostCollapse2" class="accordion-collapse collapse" data-bs-parent="#hostSafetyAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Review guest profiles and reviews</li>
+                                <li>Communicate through our platform</li>
+                                <li>Set clear house rules and expectations</li>
+                                <li>Verify guest identity when possible</li>
+                                <li>Trust your instincts about potential guests</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h3 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hostCollapse3">
+                            Insurance and Protection</                        </button>
+                    </h3>
+                    <div id="hostCollapse3" class="accordion-collapse collapse" data-bs-parent="#hostSafetyAccordion">
+                        <div class="accordion-body">
+                            <ul>
+                                <li>Consider host protection insurance</li>
+                                <li>Document property condition before guests</li>
+                                <li>Understand local hosting regulations</li>
+                                <li>Keep records of all communications</li>
+                                <li>Report incidents promptly to WanderLust</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card bg-danger text-white">
+                <div class="card-body text-center">
+                    <h3><i class="fas fa-exclamation-triangle me-2"></i>Emergency Contacts</h3>
+                    <div class="row mt-4">
+                        <div class="col-md-4 mb-3">
+                            <h5>Local Emergency</h5>
+                            <p class="mb-0">Call your local emergency number<br><strong>911 (US), 112 (EU), etc.</strong></p>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <h5>WanderLust Safety</h5>
+                            <p class="mb-0">24/7 Safety Hotline<br><strong>+1-800-WANDERLUST</strong></p>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <h5>Online Support</h5>
+                            <p class="mb-0">Emergency Chat<br><strong><a href="/help" class="text-white">help.wanderlust.com</a></strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+            <h3>Additional Safety Resources</h3>
+            <div class="row mt-4">
+                <div class="col-md-6 mb-3">
+                    <a href="/help" class="btn btn-outline-primary btn-lg w-100">
+                        <i class="fas fa-question-circle me-2"></i>
+                        Help Center
+                    </a>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <a href="/report" class="btn btn-outline-danger btn-lg w-100">
+                        <i class="fas fa-flag me-2"></i>
+                        Report a Concern
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(255, 90, 95, 0.25);
+    border-color: #FF5A5F;
+}
+
+.card-danger {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+}
+</style>

@@ -1,0 +1,120 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-4 mb-4">Help Center</h1>
+            <p class="lead mb-5">Find answers to common questions and get the support you need for your WanderLust experience.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <i class="fas fa-home fa-2x text-primary"></i>
+                    </div>
+                    <h5 class="card-title">For Guests</h5>
+                    <p class="card-text">Get help with booking, check-ins, host communication, and more.</p>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none">Booking help</a></li>
+                        <li><a href="#" class="text-decoration-none">Check-in process</a></li>
+                        <li><a href="#" class="text-decoration-none">Payment issues</a></li>
+                        <li><a href="#" class="text-decoration-none">Host communication</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <i class="fas fa-key fa-2x text-success"></i>
+                    </div>
+                    <h5 class="card-title">For Hosts</h5>
+                    <p class="card-text">Resources for listing your space, managing bookings, and hosting successfully.</p>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none">Create a listing</a></li>
+                        <li><a href="#" class="text-decoration-none">Host standards</a></li>
+                        <li><a href="#" class="text-decoration-none">Pricing tips</a></li>
+                        <li><a href="#" class="text-decoration-none">Guest reviews</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <i class="fas fa-shield-alt fa-2x text-warning"></i>
+                    </div>
+                    <h5 class="card-title">Safety & Security</h5>
+                    <p class="card-text">Learn about our safety measures and how to protect yourself.</p>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-decoration-none">Safety guidelines</a></li>
+                        <li><a href="#" class="text-decoration-none">Identity verification</a></li>
+                        <li><a href="#" class="text-decoration-none">Secure payments</a></li>
+                        <li><a href="#" class="text-decoration-none">Emergency contacts</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2>Frequently Asked Questions</h2>
+            <div class="accordion mt-4" id="faqAccordion">
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                            How do I cancel my reservation?
+                        </button>
+                    </h3>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            You can cancel your reservation by going to your bookings and following the cancellation process. Cancellation policies vary by listing, so please review the specific policy before booking.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                            How do I contact my host?
+                        </button>
+                    </h3>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            You can message your host through our platform. Go to your booking details and use the "Contact Host" feature to send messages safely and securely.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h3 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                            What if I have an issue during my stay?
+                        </button>
+                    </h3>
+                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            If you encounter any issues during your stay, contact your host first. If the issue isn't resolved, you can reach out to our 24/7 customer support team for assistance.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <h3>Need More Help?</h3>
+            <p class="lead">Can't find what you're looking for? Our support team is here to help.</p>
+            <a href="/report" class="btn btn-primary btn-lg">Contact Support</a>
+        </div>
+    </div>
+</div>

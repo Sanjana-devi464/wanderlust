@@ -1,0 +1,57 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="display-4 mb-4">Report a Concern</h1>
+            <p class="lead mb-5">Help us maintain a safe and welcoming community for everyone</p>
+
+            <div class="row">
+                <div class="col-12">
+                    <form>
+                        <div class="mb-3">
+                            <label for="concernType" class="form-label">Type of Concern</label>
+                            <select class="form-select" id="concernType" required>
+                                <option value="">Select a concern type</option>
+                                <option value="safety">Safety Issue</option>
+                                <option value="discrimination">Discrimination</option>
+                                <option value="property">Property Damage</option>
+                                <option value="harassment">Harassment</option>
+                                <option value="fraud">Fraudulent Activity</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" rows="5" placeholder="Please provide as much detail as possible about your concern..." required></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="urgency" class="form-label">Urgency Level</label>
+                            <select class="form-select" id="urgency" required>
+                                <option value="">Select urgency</option>
+                                <option value="low">Low - General feedback</option>
+                                <option value="medium">Medium - Issue needs attention</option>
+                                <option value="high">High - Urgent safety concern</option>
+                                <option value="emergency">Emergency - Immediate assistance needed</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="contactEmail" class="form-label">Contact Email</label>
+                            <input type="email" class="form-control" id="contactEmail" placeholder="your.email@example.com" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-lg">Submit Report</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="alert alert-warning mt-5">
+                <h5><i class="fas fa-exclamation-triangle me-2"></i>Emergency Situations</h5>
+                <p class="mb-0">If you're in immediate danger, contact local emergency services first (911, 112, etc.), then contact WanderLust support at <strong>+1-800-WANDERLUST</strong></p>
+            </div>
+        </div>
+    </div>
+</div>

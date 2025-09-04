@@ -1,0 +1,125 @@
+<% layout("layouts/boilerplate") %>
+<script>
+    const mapToken = "<%= process.env.MAP_TOKEN %>";
+    const listing = <%- JSON.stringify(listing) %>;
+    //const location =<%- JSON.stringfy(listing.location %>);
+
+</script>
+
+<div class="row mt-2">
+    <div class="col-8 offset-2">
+        <div class="card col-8 offset-2 show-card listing-card">
+            <div class="position-relative">
+                <img
+                 src="<%= listing.image && listing.image.url ? listing.image.url : 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60' %>" 
+                     class="card-img-top" 
+                     alt="<%= listing.title %>" 
+                     style="height: 400px; object-fit: cover;">
+                <div class="card-img-overlay d-flex align-items-end">
+                    <h2 class="show-listing-title-overlay text-white"><%= listing.title %></h2>
+                </div>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <p class="card-text"><i>
+                    <% if(listing.owner && listing.owner.username) { %>
+                        <%= listing.owner.username %>
+                    <% } else { %>
+                         Unknown User
+                    <% } %>
+                </i></p>
+                <p class ="card-text"><%= listing.description %></p>
+                <p class="card-text"><strong>Price:</strong><%= listing.price.toLocaleString("en-IN") %> /night<br></p>
+                <p class="card-text"><strong>Location:</strong> <%= listing.location %>, <%= listing.country %></p>
+             
+
+                <div class="btn-group-show">
+                                        <% if (currentUser && !listing.owner && currentUser.isAdmin) { %>
+                                                <form method="POST" action="/admin/listings/<%= listing._id %>/claim" style="display:inline" onsubmit="return confirm('Claim ownership of this legacy listing?');">
+                                                    <button type="submit" class="btn btn-warning">Claim Ownership</button>
+                                                </form>
+                                        <% } %>
+                                        <% if(currentUser && listing.owner && currentUser._id.equals(listing.owner._id)) { %>
+                        <a href="/listings/<%= listing._id %>/edit" class="btn btn-primary">Edit</a>
+                        <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE" style="display: inline;">
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this listing?')">Delete</button>
+                        </form>
+                    <% } %>
+                    <a href="/listings" class="btn btn-secondary">Back to All Listings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+        <hr/>
+    
+    <div class ="col-8 offset-3 mb-3">
+        <% if(currentUser) { %>
+            <h4>Leave a Review</h4>
+            <form action ="/listings/<%= listing._id %>/reviews" method="POST" novalidate class="needs-validation">
+                <fieldset class="starability-slot">
+                  <legend>Rating:</legend>
+                  <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                  <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                  <label for="first-rate1" title="Terrible">1 star</label>
+                  <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                  <label for="first-rate2" title="Not good">2 stars</label>
+                  <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                  <label for="first-rate3" title="Average">3 stars</label>
+                  <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                  <label for="first-rate4" title="Very good">4 stars</label>
+                  <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                  <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
+
+                <div class ="mb-3 mt-3">
+                    <label for="comment" class="form-label">Comments</label>
+                    <textarea id="comment" name="review[comment]" cols="30" rows="5" class="form-control" required></textarea>
+                     <div class ="invalid-feedback">Please enter a valid comment</div>
+                </div>
+                <button type="submit" class="btn btn-outline-dark">Submit Review</button>
+            </form>
+        <% } else { %>
+            <h4>Leave a Review</h4>
+            <p><a href="/login">Please log in</a> to leave a review.</p>
+        <% } %>
+        <hr/>
+
+        <p><b>All Reviews</b></p>
+        <div class ="row">
+             <% for (review of listing.reviews) { %>
+            <div class="card col-5 ms-3 mb-3">
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between align-items-start">@
+                        <% if(review.author && typeof review.author === 'object' && review.author.username) { %>
+                            <%= review.author.username %>
+                        <% } else if(typeof review.author === 'string') { %>
+                            <%= review.author %>
+                        <% } else { %>
+                            Unknown User
+                        <% } %>
+                                                <% /* Determine if current user can delete this review (author or listing owner) */ %>
+                                                <% const canDeleteReview = currentUser && (
+                                                            (review.author && review.author._id && currentUser._id.equals(review.author._id)) ||
+                                                            (review.author && review.author.equals && review.author.equals(currentUser._id)) ||
+                                                            (listing.owner && listing.owner._id && currentUser._id.equals(listing.owner._id))
+                                                     ); %>
+                                                <% if (canDeleteReview) { %>
+                                                    <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE" class="ms-2" onsubmit="return confirm('Delete this review?');">
+                                                        <button type="submit" class="btn btn-outline-danger btn-sm" title="Delete your review">&times;</button>
+                                                    </form>
+                                                <% } %>
+                    </h5>
+                    <p class="starability-slot card-text"><small class="text-muted"><%= review.rating %> </small></p>
+                    <p class="card-text"><%= review.comment %></p>
+                    <hr/>
+                                        <% /* Old delete button removed; new mini button shown in header */ %>
+                </div>
+            </div> 
+       <% } %>
+        </div>
+    <div class ="col-6 offset-3 mb-3">
+        <h3>Where You'll be </h3>
+    <div id="map"></div>
+</div>
+</div>
+

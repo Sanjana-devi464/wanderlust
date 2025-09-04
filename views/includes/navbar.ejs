@@ -1,0 +1,79 @@
+<style>
+   .search-btn{
+    background-color: #fe424d;
+    color: white;
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+   }
+
+   .search-btn:hover{
+    background-color: #fe424d;
+    color: white;
+   }
+   .search-btn i{
+     display:inline;
+     margin-right: 0.5rem;
+   }
+  
+   .search-input{
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+    font-size : 1rem;
+    width: 300px;
+   }
+
+   .navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+   }
+
+   .navbar-nav.ms-auto {
+    margin-left: auto !important;
+   }
+
+</style>
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/listings"><i class="fa-solid fa-compass"></i></a>
+    <button
+      class="navbar-toggler" 
+      type="button" 
+      data-bs-toggle="collapse" 
+      data-bs-target="#navbarNavAltMarkup" >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="/listings">Explore</a>
+        <a class="nav-link" href="/about">About</a>
+      </div>
+      
+      <!-- Centered Search Form -->
+      <div class="navbar-center">
+        <form class="d-flex" role="search" action="/listings/search" method="GET">
+          <input class="form-control me-2 search-input" 
+          type="search"
+          name="destination"
+          placeholder="Search destinations"
+          required/>
+          <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+        </form>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <% if (isAdmin) { %>
+          <a class="nav-link" href="/admin/dashboard">Admin Panel</a>
+        <% } %>
+        <a class="nav-link" href="/listings/new">WanderLust your home</a>
+        <% if (!currentUser) { %>
+        <a class="nav-link" href="/signup"><b>Sign Up</b></a>
+        <a class="nav-link" href="/login"><b>Log in</b></a>
+        <% } %>
+        <% if(currentUser) { %>
+        <a class="nav-link" href="/logout"><b>Log out</b></a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

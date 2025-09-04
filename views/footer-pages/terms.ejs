@@ -1,0 +1,153 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="display-4 mb-4">Terms of Service</h1>
+            <p class="text-muted mb-5">Last updated: <%= new Date().toLocaleDateString() %></p>
+
+            <div class="content">
+                <h2>Agreement to Terms</h2>
+                <p>By accessing and using WanderLust ("Service"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of these terms, you may not access the Service.</p>
+
+                <h2>Description of Service</h2>
+                <p>WanderLust is an online marketplace that connects people who want to rent out their properties ("Hosts") with people who are looking for accommodations ("Guests"). We do not own, create, sell, resell, provide, control, manage, offer, deliver, or supply any listings or travel services.</p>
+
+                <h2>Eligibility</h2>
+                <p>To use our Service, you must:</p>
+                <ul>
+                    <li>Be at least 18 years old</li>
+                    <li>Provide accurate and complete information</li>
+                    <li>Maintain the security of your account</li>
+                    <li>Comply with all applicable laws</li>
+                </ul>
+
+                <h2>User Accounts</h2>
+                <h3>Account Creation</h3>
+                <p>You must create an account to use certain features of our Service. You are responsible for:</p>
+                <ul>
+                    <li>Maintaining the confidentiality of your account credentials</li>
+                    <li>All activities that occur under your account</li>
+                    <li>Notifying us immediately of unauthorized use</li>
+                </ul>
+
+                <h3>Account Termination</h3>
+                <p>We may suspend or terminate your account if you violate these Terms or engage in fraudulent, illegal, or harmful activity.</p>
+
+                <h2>Host Terms</h2>
+                <h3>Listing Standards</h3>
+                <p>As a Host, you agree to:</p>
+                <ul>
+                    <li>Provide accurate listing information and photos</li>
+                    <li>Honor confirmed reservations</li>
+                    <li>Maintain your property in good condition</li>
+                    <li>Comply with applicable laws and regulations</li>
+                    <li>Respond to guests in a timely manner</li>
+                </ul>
+
+                <h3>Pricing and Fees</h3>
+                <p>Hosts set their own prices. WanderLust charges service fees for successful bookings. Tax obligations are the Host's responsibility.</p>
+
+                <h2>Guest Terms</h2>
+                <h3>Booking and Payment</h3>
+                <p>As a Guest, you agree to:</p>
+                <ul>
+                    <li>Pay all booking fees and charges</li>
+                    <li>Comply with house rules</li>
+                    <li>Treat the property and neighbors with respect</li>
+                    <li>Leave the property in good condition</li>
+                </ul>
+
+                <h3>Cancellation</h3>
+                <p>Cancellation policies vary by listing. Review the specific policy before booking. Fees may apply for cancellations.</p>
+
+                <h2>Prohibited Uses</h2>
+                <p>You may not use our Service to:</p>
+                <ul>
+                    <li>Violate any laws or regulations</li>
+                    <li>Engage in fraudulent or deceptive practices</li>
+                    <li>Discriminate against others</li>
+                    <li>Harass, threaten, or harm others</li>
+                    <li>Spam or send unsolicited communications</li>
+                    <li>Infringe on intellectual property rights</li>
+                </ul>
+
+                <h2>Content and Intellectual Property</h2>
+                <h3>User Content</h3>
+                <p>You retain ownership of content you submit but grant us a license to use it for providing our Service. You represent that your content doesn't violate third-party rights.</p>
+
+                <h3>WanderLust Content</h3>
+                <p>Our platform, including design, text, graphics, and software, is protected by intellectual property laws. You may not copy, modify, or distribute our content without permission.</p>
+
+                <h2>Privacy and Data Protection</h2>
+                <p>Your privacy is important to us. Please review our <a href="/privacy">Privacy Policy</a> to understand how we collect, use, and protect your information.</p>
+
+                <h2>Disclaimers and Limitations</h2>
+                <h3>Service Availability</h3>
+                <p>We strive to maintain continuous service but cannot guarantee uninterrupted access. We may update, modify, or discontinue features at any time.</p>
+
+                <h3>Third-Party Content</h3>
+                <p>We are not responsible for content provided by users or third parties. Interactions between Hosts and Guests are at their own risk.</p>
+
+                <h3>Limitation of Liability</h3>
+                <p>To the maximum extent permitted by law, WanderLust shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the Service.</p>
+
+                <h2>Dispute Resolution</h2>
+                <p>We encourage users to resolve disputes directly. If you have a complaint, please contact our <a href="/help">support team</a> first. For unresolved disputes, binding arbitration may be required.</p>
+
+                <h2>Changes to Terms</h2>
+                <p>We may modify these Terms at any time. Significant changes will be communicated via email or platform notification. Continued use constitutes acceptance of updated Terms.</p>
+
+                <h2>Governing Law</h2>
+                <p>These Terms are governed by the laws of [Your Jurisdiction]. Any disputes will be resolved in the courts of [Your Jurisdiction].</p>
+
+                <h2>Contact Information</h2>
+                <p>For questions about these Terms, please contact us:</p>
+                <ul class="list-unstyled">
+                    <li><strong>Email:</strong> <a href="mailto:legal@wanderlust.com">legal@wanderlust.com</a></li>
+                    <li><strong>Support:</strong> <a href="/help">Visit our Help Center</a></li>
+                    <li><strong>Address:</strong> WanderLust Legal Team, 123 Travel Street, Adventure City, AC 12345</li>
+                </ul>
+
+                <div class="alert alert-warning mt-4">
+                    <h5>Important Notice</h5>
+                    <p class="mb-0">By using WanderLust, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service and our <a href="/privacy" class="alert-link">Privacy Policy</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.content h2 {
+    color: #333;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.content h3 {
+    color: #555;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+}
+
+.content p, .content li {
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+}
+
+.content ul {
+    margin-bottom: 1.5rem;
+}
+
+.content a {
+    color: #FF5A5F;
+    text-decoration: none;
+}
+
+.content a:hover {
+    text-decoration: underline;
+}
+</style>

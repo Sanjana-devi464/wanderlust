@@ -1,0 +1,68 @@
+<% layout('layouts/boilerplate') %>
+<h2>Admin Dashboard</h2>
+<p>Welcome, <%= currentUser.username %> (Admin)</p>
+
+<h4>All Listings</h4>
+<form method="POST" action="/admin/listings/claim-all?_method=POST" class="mb-2">
+  <button class="btn btn-warning btn-sm" onclick="return confirm('Claim all legacy listings?');">Claim All Legacy Listings</button>
+</form>
+<table class="table table-sm table-bordered">
+  <thead><tr><th>Title</th><th>Owner</th><th>Actions</th></tr></thead>
+  <tbody>
+    <% listings.forEach(l => { %>
+      <tr>
+        <td><a href="/listings/<%= l._id %>"><%= l.title %></a></td>
+        <td>
+          <% if (l.owner && l.owner.username) { %>
+            <%= l.owner.username %>
+          <% } else { %>
+            <span class="text-danger">No owner</span>
+          <% } %>
+        </td>
+        <td>
+          <form method="POST" action="/admin/listings/<%= l._id %>?_method=DELETE" onsubmit="return confirm('Delete listing?');" style="display:inline">
+            <button class="btn btn-danger btn-sm">Delete</button>
+          </form>
+          <% if (!l.owner) { %>
+            <form method="POST" action="/admin/listings/<%= l._id %>/claim" style="display:inline" onsubmit="return confirm('Claim ownership of this listing?');">
+              <button class="btn btn-outline-primary btn-sm">Claim</button>
+            </form>
+          <% } %>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<h4>All Reviews</h4>
+<table class="table table-sm table-bordered">
+  <thead><tr><th>Excerpt</th><th>Author</th><th>Rating</th><th>Actions</th></tr></thead>
+  <tbody>
+    <% reviews.forEach(r => { %>
+      <tr>
+        <td><%= (r.comment || '').slice(0,40) %></td>
+        <td><%= r.author && r.author.username ? r.author.username : '—' %></td>
+        <td><%= r.rating %></td>
+        <td>
+          <form method="POST" action="/admin/reviews/<%= r._id %>?_method=DELETE" onsubmit="return confirm('Delete review?');" style="display:inline">
+            <button class="btn btn-danger btn-sm">Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<h4>Users</h4>
+<table class="table table-sm table-bordered">
+  <thead><tr><th>Username</th><th>Email</th><th>Admin</th></tr></thead>
+  <tbody>
+    <% users.forEach(u => { %>
+      <tr>
+        <td><%= u.username %></td>
+        <td><%= u.email %></td>
+        <td><%= u.isAdmin ? 'Yes' : 'No' %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

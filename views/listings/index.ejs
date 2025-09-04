@@ -1,0 +1,527 @@
+<% layout("layouts/boilerplate") %>
+<style>
+    #filters {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .filter{
+        text-align: center;
+        margin-right: 2rem;
+        margin-top: 2rem;
+        opacity:0.7;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .filter:hover {
+        opacity: 1;
+        cursor: pointer;
+        transform: translateY(-2px);
+    }
+
+    .filter.active {
+        opacity: 1;
+        color: #fe424d;
+        font-weight: bold;
+    }
+
+    .filter.active i {
+        color: #fe424d;
+    }
+
+    .filter p{
+        font-size:0.8rem;
+
+    }
+
+    .tax-info {
+        display: none;
+    }
+    .tax-toggle {
+        border: 1px solid black;
+        border-radius: 1rem;
+        height: 3.25rem;
+        padding: 1rem;
+        margin-left: 2rem;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Enhanced Card Styling */
+    .listing-card {
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+    }
+
+    .listing-card .card {
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        overflow: hidden;
+        height: 100%;
+        background: white;
+    }
+
+    .listing-card .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .listing-card .card-img-top {
+        height: 250px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .listing-card .card:hover .card-img-top {
+        transform: scale(1.05);
+    }
+
+    .listing-card .card-body {
+        padding: 1.5rem;
+        position: relative;
+    }
+
+    .listing-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+    }
+
+    .listing-location {
+        font-size: 0.9rem;
+        color: #7f8c8d;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .listing-location i {
+        margin-right: 0.5rem;
+        color: #e74c3c;
+    }
+
+    .listing-price {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 1rem;
+    }
+
+    .listing-price .currency {
+        font-size: 0.9rem;
+        color: #7f8c8d;
+    }
+
+    .listing-btn {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 25px;
+        color: white;
+        font-weight: 600;
+        padding: 0.7rem 1.5rem;
+        transition: all 0.3s ease;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .listing-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        color: white;
+    }
+
+    .listing-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        transition: left 0.3s ease;
+        z-index: -1;
+    }
+
+    .listing-btn:hover::before {
+        left: 0;
+    }
+
+    .category-badge {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    .price-highlight {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 15px;
+        display: inline-block;
+        margin-bottom: 1rem;
+    }
+
+    .heart-icon {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 10;
+    }
+
+    .heart-icon:hover {
+        background: white;
+        transform: scale(1.1);
+    }
+
+    .heart-icon i {
+        color: #e74c3c;
+        transition: all 0.3s ease;
+    }
+
+    .eye-icon {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 10;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .eye-icon:hover {
+        background: rgba(255, 255, 255, 1);
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .eye-icon i {
+        color: black;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+    }
+
+    .location-match-card {
+        border: 2px solid #27ae60 !important;
+        background: linear-gradient(135deg, #ffffff 0%, #f8fffa 100%) !important;
+    }
+
+    .rating-stars {
+        color: #f39c12;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+        .listing-card .card {
+            margin-bottom: 1rem;
+        }
+        
+        .listing-card .card-img-top {
+            height: 200px;
+        }
+    }
+
+</style>
+
+<% if (typeof searchQuery !== 'undefined' && searchQuery) { %>
+<div class="container mt-3">
+    <div class="alert alert-info d-flex justify-content-between align-items-center">
+        <div>
+            <strong>Search Results for:</strong> "<%= searchQuery %>"
+            <span class="badge bg-primary ms-2"><%= allListings.length %> result(s)</span>
+            <% if (typeof locationMatches !== 'undefined' && locationMatches > 0) { %>
+                <span class="badge bg-success ms-1"><%= locationMatches %> location match<%= locationMatches > 1 ? 'es' : '' %></span>
+            <% } %>
+        </div>
+        <a href="/listings" class="btn btn-outline-secondary btn-sm">View All Listings</a>
+    </div>
+    <% if (typeof locationMatches !== 'undefined' && locationMatches > 0) { %>
+    <div class="alert alert-success py-2">
+        <small><i class="fas fa-map-marker-alt me-1"></i>Location matches are shown first, followed by other relevant results</small>
+    </div>
+    <% } %>
+</div>
+<% } %>
+
+<!-- Category Filter Results -->
+<% if (typeof selectedCategory !== 'undefined' && selectedCategory) { %>
+<div class="container mt-3">
+    <div class="alert alert-success d-flex justify-content-between align-items-center">
+        <div>
+            <strong>Category:</strong> "<%= selectedCategory %>"
+            <span class="badge bg-primary ms-2"><%= allListings.length %> listing(s)</span>
+        </div>
+        <a href="/listings" class="btn btn-outline-secondary btn-sm">View All Listings</a>
+    </div>
+</div>
+<% } %>
+
+<div id="filters">
+    <a href="/listings/filter/Trending" class="filter <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Trending' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-fire"></i></div>
+        <p>Trending</p>
+    </a>
+    <a href="/listings/filter/Rooms" class="filter <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Rooms' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-bed"></i></div>
+        <p>Rooms</p>
+    </a>
+    <a href="/listings/filter/Iconic Cities" class="filter <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Iconic Cities' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-mountain-city"></i></div>
+        <p>Iconic Cities</p>
+    </a>
+    <a href="/listings/filter/Mountains" class="filter <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Mountains' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-mountain"></i></div>
+        <p>Mountains</p>
+    </a>
+    <a href="/listings/filter/Castles" class="filter <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Castles' ? 'active' : '' %>">
+        <div><i class="fa-brands fa-fort-awesome"></i></div>
+        <p>Castles</p>
+    </a>
+    <a href="/listings/filter/Camping" class="filter <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Camping' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-campground"></i></div>
+        <p>Camping</p>
+    </a>
+    <a href="/listings/filter/Farms" class="filter <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Farms' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-tractor"></i></div>
+        <p>Farms</p>
+    </a>
+    <a href="/listings/filter/Arctic" class="filter <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Arctic' ? 'active' : '' %>">
+        <div><i class="fa-regular fa-snowflake"></i></div>
+        <p>Arctic</p>
+    </a>
+    <a href="/listings/filter/Amazing Pools" class="filter <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Amazing Pools' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-person-swimming"></i></div>
+        <p>Amazing Pools</p>
+    </a>
+    <a href="/listings/filter/Nature" class="filter <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Nature' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-tree"></i></div>
+        <p>Nature</p>
+    </a>
+    <a href="/listings/filter/Domes" class="filter <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Domes' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-igloo"></i></div>
+        <p>Domes</p>
+    </a>
+    <a href="/listings/filter/Boats" class="filter <%= typeof selectedCategory !== 'undefined' && selectedCategory === 'Boats' ? 'active' : '' %>">
+        <div><i class="fa-solid fa-ship"></i></div>
+        <p>Boats</p>
+    </a>
+
+
+   <div class="tax-toggle">
+    <div class="form-check-reverse form-switch">
+        <input class="form-check-input"
+         type="checkbox"
+         role="switch"
+         id="switchCheckDefault">
+
+        <label class="form-check-label"
+         for="switchCheckDefault">
+         Display total after Taxes</label>
+   </div>
+   </div>
+
+   </div>
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-4">
+<% for(let i = 0; i < allListings.length; i++) { %>
+    <% let listing = allListings[i]; %>
+    <% let isLocationMatch = typeof locationMatches !== 'undefined' && i < locationMatches; %>
+    <div class="col listing-card">
+        <div class="card <%= isLocationMatch ? 'location-match-card' : '' %>">
+            <div style="position: relative;">
+                <!-- Category Badge -->
+                <% if (listing.category) { %>
+                <div class="category-badge">
+                    <%= listing.category %>
+                </div>
+                <% } %>
+                
+                <!-- Heart/Favorite Icon -->
+                <button class="heart-icon" onclick="toggleFavorite('<%= listing._id %>')">
+                    <i class="far fa-heart"></i>
+                </button>
+                
+                <!-- Eye/View Details Icon -->
+                <button class="eye-icon" onclick="viewListingDetails('<%= listing._id %>')">
+                    <i class="fas fa-eye"></i>
+                </button>
+                
+                <!-- Location Match Badge -->
+                <% if (isLocationMatch && typeof searchQuery !== 'undefined') { %>
+                <div class="position-absolute" style="top: 1rem; right: 4rem;">
+                    <span class="badge bg-success">
+                        <i class="fas fa-map-marker-alt me-1"></i>Match
+                    </span>
+                </div>
+                <% } %>
+                
+                <img src="<%= listing.image && listing.image.url ? listing.image.url : 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60' %>" 
+                     class="card-img-top" 
+                     alt="<%= listing.title %>" 
+                     onerror="this.src='https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60'; this.onerror=null;"
+                     loading="lazy">
+            </div>
+            
+            <div class="card-body">
+                <!-- Dynamic Rating Stars -->
+                <div class="rating-stars">
+                    <% if (listing.averageRating > 0) { %>
+                        <% const fullStars = Math.floor(listing.averageRating); %>
+                        <% const hasHalfStar = listing.averageRating % 1 !== 0; %>
+                        <% const emptyStars = 5 - Math.ceil(listing.averageRating); %>
+                        
+                        <!-- Full stars -->
+                        <% for (let i = 0; i < fullStars; i++) { %>
+                            <i class="fas fa-star"></i>
+                        <% } %>
+                        
+                        <!-- Half star -->
+                        <% if (hasHalfStar) { %>
+                            <i class="fas fa-star-half-alt"></i>
+                        <% } %>
+                        
+                        <!-- Empty stars -->
+                        <% for (let i = 0; i < emptyStars; i++) { %>
+                            <i class="far fa-star"></i>
+                        <% } %>
+                        
+                        <span class="ms-1" style="color: #7f8c8d; font-size: 0.8rem;">(<%= listing.averageRating %>)</span>
+                        <span class="ms-1" style="color: #7f8c8d; font-size: 0.8rem;">• <%= listing.reviewCount %> review<%= listing.reviewCount !== 1 ? 's' : '' %></span>
+                    <% } else { %>
+                        <% for (let i = 0; i < 5; i++) { %>
+                            <i class="far fa-star"></i>
+                        <% } %>
+                        <span class="ms-1" style="color: #7f8c8d; font-size: 0.8rem;">No reviews yet</span>
+                    <% } %>
+                </div>
+                
+                <!-- Title -->
+                <h5 class="listing-title"><%= listing.title %></h5>
+                
+                <!-- Location -->
+                <div class="listing-location <%= isLocationMatch ? 'text-success fw-bold' : '' %>">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <%= listing.location %>, <%= listing.country %>
+                </div>
+                
+                <!-- Price -->
+                <div class="price-highlight">
+                    <span class="currency">₹</span><%= listing.price.toLocaleString("en-IN") %>
+                    <small>/night</small>
+                    <i class="tax-info" style="font-size: 0.8rem; margin-left: 0.5rem;">+18% GST</i>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %>
+</div>
+
+
+<script>
+    let taxSwitch = document.getElementById('switchCheckDefault');
+    taxSwitch.addEventListener("click", () => {
+        let taxInfoElements = document.querySelectorAll('.tax-info');
+        for (let info of taxInfoElements) {
+            if (info.style.display !== "none") {
+                info.style.display = "none";
+            } else {
+                info.style.display = "inline";
+            }
+        }
+    });
+
+    // Favorite/Heart functionality
+    function toggleFavorite(listingId) {
+        const heartIcon = event.target.closest('.heart-icon').querySelector('i');
+        
+        if (heartIcon.classList.contains('far')) {
+            // Add to favorites
+            heartIcon.classList.remove('far');
+            heartIcon.classList.add('fas');
+            heartIcon.style.color = '#e74c3c';
+            
+            // Add animation
+            heartIcon.closest('.heart-icon').style.transform = 'scale(1.3)';
+            setTimeout(() => {
+                heartIcon.closest('.heart-icon').style.transform = 'scale(1)';
+            }, 200);
+            
+            // You can add AJAX call here to save to favorites
+            console.log('Added to favorites:', listingId);
+        } else {
+            // Remove from favorites
+            heartIcon.classList.remove('fas');
+            heartIcon.classList.add('far');
+            heartIcon.style.color = '#e74c3c';
+            
+            console.log('Removed from favorites:', listingId);
+        }
+    }
+
+    // View listing details functionality
+    function viewListingDetails(listingId) {
+        const eyeIcon = event.target.closest('.eye-icon');
+        
+        // Add click animation
+        eyeIcon.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+            eyeIcon.style.transform = 'scale(1)';
+            // Navigate to listing details page
+            window.location.href = `/listings/${listingId}`;
+        }, 150);
+    }
+
+    // Add card click functionality (excluding heart and eye buttons)
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.listing-card .card');
+        
+        cards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Don't navigate if clicking on heart button or eye button
+                if (e.target.closest('.heart-icon') || e.target.closest('.eye-icon')) {
+                    return;
+                }
+                
+                // Get listing ID from the eye button
+                const eyeBtn = card.querySelector('.eye-icon');
+                if (eyeBtn) {
+                    const onclick = eyeBtn.getAttribute('onclick');
+                    const listingId = onclick.match(/'([^']+)'/)[1];
+                    window.location.href = `/listings/${listingId}`;
+                }
+            });
+        });
+    });
+</script>
